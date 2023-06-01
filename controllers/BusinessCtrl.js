@@ -12,7 +12,7 @@ exports.createBusiness = (req, res, next) => {
     category: req.body.category,
     location: {
       type: 'Point',
-      coordinates: coordinate
+      coordinates: coordinate  
     },
     benefits: req.body.benefits,
     description: req.body.description,

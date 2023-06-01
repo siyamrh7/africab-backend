@@ -1,17 +1,23 @@
 // Import required modules
 require('dotenv').config()
 const express = require('express');
+const https = require('https');
 const http = require('http');
+
 const socketIO = require('socket.io');
 const mongoose=require('mongoose')
 const cors=require('cors')
 const authrouter=require('./controllers/AuthCtrl')
 const {router,Socket}=require('./Routes')
-
+const fs =require('fs')
 // Initialize Express.js app and create server
+const httpsOptions = {
+  // cert: fs.readFileSync("/etc/letsencrypt/live/africabnetworking.ca/fullchain.pem"),
+ //  key: fs.readFileSync("/etc/letsencrypt/live/africabnetworking.ca/privkey.pem")
+}
 const app = express();
+// const server = https.createServer(httpsOptions,app);
 const server = http.createServer(app);
-
 //Connecting Database
 mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true})
 .then(res=>console.log("Database connected")).catch(err=>console.log(err))
